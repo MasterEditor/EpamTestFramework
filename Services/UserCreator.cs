@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace FrameworkCore.Services
 {
-    internal class UserCreator
+    public class UserCreator
     {
+
     }
 }
