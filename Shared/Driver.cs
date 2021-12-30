@@ -39,6 +39,8 @@ namespace FrameworkCore.Shared
                         break;
                     default:
                         new DriverManager().SetUpDriver(new ChromeConfig());
+                        ChromeOptions options = new ChromeOptions();
+                        options.AddArgument(@"user-data-dir=C:\Users\ILLUSION\AppData\Local\Google\Chrome\User Data");
                         _driver = new ChromeDriver();
                         break;
                 }

@@ -23,6 +23,7 @@ namespace FrameworkCore.Pages
         public IWebElement WalletMenu => Driver.FindElement(By.ClassName("wallet-menu-total__view"));
         public IWebElement DemoAccountSelector => Driver.FindElement(By.CssSelector(".wallet-account.--demo"));
         public IWebElement CurrentAsset => Driver.FindElement(By.XPath("//div[@class=\"chart-tab --active --closable\"]/div[1]/div[1]/div[1]"));
+        public IWebElement SearchAssetInput => Driver.FindElement(By.CssSelector(".asset-menu-header__input > input"));
         public IWebElement OpenSettingsButton => Driver.FindElement(By.ClassName("settings-button"));
         public IWebElement CloseSettingsButton => Driver.FindElement(By.XPath("//div[@a-test=\"settings-close\"]"));
         public IWebElement TimeZoneDropdown => Driver.FindElement(By.XPath("//div[@a-test=\"settings-timezone\"]"));
@@ -44,6 +45,15 @@ namespace FrameworkCore.Pages
         {
             EURAssetSelector.Click();
             return this;
+        }
+
+        public string FindAsset(string name)
+        {
+            BitcoinAssetSelector.Click();
+            SearchAssetInput.SendKeys(name);
+            var foundElement = Driver.FindElement(By.CssSelector(".asset-menu-item__name > span"));
+            return foundElement.Text;
+
         }
 
         public TradePage SelectDemoAccount()

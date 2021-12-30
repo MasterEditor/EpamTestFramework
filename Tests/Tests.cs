@@ -58,7 +58,6 @@ namespace FrameworkCore.Tests
         public void PlaceBetTest()
         {
             var tradePage = new TradePage();
-            //tradePage.SelectBitcoinAsset();
             tradePage.SelectDemoAccount();
 
             var validBet = BetCreator.CreateCorrectBet();
@@ -92,6 +91,16 @@ namespace FrameworkCore.Tests
         }
 
         [Test, Order(5)]
+        public void FindAssetTest()
+        {
+            var tradePage = new TradePage().OpenPage();
+
+            var found = tradePage.FindAsset("GOLD");
+
+            StringAssert.AreEqualIgnoringCase("GOLD", found);
+        }
+
+        [Test, Order(6)]
         public void ChangeNicknameTest()
         {
             var nickname = StringHelper.RandomString(10);
@@ -106,5 +115,6 @@ namespace FrameworkCore.Tests
 
             StringAssert.AreEqualIgnoringCase(nickname, confirmedNickname);
         }
+
     }
 }
