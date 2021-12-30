@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using FrameworkCore.Models;
 using OpenQA.Selenium;
-
+using OpenQA.Selenium.Support.UI;
 
 namespace FrameworkCore.Pages
 {
