@@ -21,7 +21,7 @@ namespace FrameworkCore.Shared
         {
             Root = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetParent(AppContext.BaseDirectory).FullName)
-                .AddJsonFile("appsettings.json", false)
+                .AddJsonFile("configuration.json", false)
                 .Build();
         }
 

@@ -1,7 +1,7 @@
 ﻿{
-  "LogFile": "C:/home/valeravelichko02/dima/Framework/log.txt",
-  "ScreenshotPath": "C:/home/valeravelichko02/dima/Framework/Screenshots/",
-  "Browser":  "Chrome",
+  "LogFile": "C:/home/valeravelichko02/dima/workspace/TestFrameworkCore/Results/log.txt",
+  "ScreenshotPath": "C:/home/valeravelichko02/dima/workspace/TestFrameworkCore/Results/Screenshots/",
+  "Browser": "Chrome",
   "UserCredentials": {
     "Username": "valeravelichko02@gmail.com",
     "Password": "S93mPhDYPeGh"
