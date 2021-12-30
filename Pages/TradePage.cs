@@ -98,11 +98,9 @@ namespace FrameworkCore.Pages
         public TradePage ChangeTimeZone(Models.TimeZone timeZone)
         {
             OpenSettingsButton.Click();
-
             TimeZoneDropdown.Click();
 
             var timeZoneSelector = Driver.FindElement(By.XPath($"//div[@class=\"t-select-list__option\"]/span[text()=\" {timeZone.ShortValue} \"]"));
-
             timeZoneSelector.Click();
 
             CloseSettingsButton.Click();

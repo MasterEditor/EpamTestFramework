@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Edge;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.IE;
 using WebDriverManager;
 using WebDriverManager.DriverConfigs.Impl;
 
@@ -18,10 +21,27 @@ namespace FrameworkCore.Shared
         {
             if (_driver is null)
             {
-                new DriverManager().SetUpDriver(new ChromeConfig());
-                ChromeOptions options = new ChromeOptions();
-                //options.AddArgument(@"user-data-dir=C:\Users\ILLUSION\AppData\Local\Google\Chrome\User Data");
-                _driver = new ChromeDriver();
+                var browser = Configuration.Instance["Browser"];
+
+                switch (browser)
+                {
+                    case "Edge":
+                        new DriverManager().SetUpDriver(new EdgeConfig());
+                        _driver = new EdgeDriver();
+                        break;
+                    case "Firefox":
+                        new DriverManager().SetUpDriver(new FirefoxConfig());
+                        _driver = new FirefoxDriver();
+                        break;
+                    case "IE":
+                        new DriverManager().SetUpDriver(new InternetExplorerConfig());
+                        _driver = new InternetExplorerDriver();
+                        break;
+                    default:
+                        new DriverManager().SetUpDriver(new ChromeConfig());
+                        _driver = new ChromeDriver();
+                        break;
+                }
             }
 
             _driver.Manage().Window.Maximize();
