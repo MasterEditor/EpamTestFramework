@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using FrameworkCore.Models;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,16 +22,19 @@ namespace FrameworkCore.Pages
             return this;
         }
 
-        public void Login()
+        public void Login(User user)
         {
             LoginOptionButton.Click();
 
-            EmailInput.SendKeys("valeravelichko02@gmail.com");
-            PasswordInput.SendKeys("S93mPhDYPeGh");
+            EmailInput.Clear();
+            PasswordInput.Clear();
+
+            EmailInput.SendKeys(user.Login);
+            PasswordInput.SendKeys(user.Password);
 
             SubmitButton.Click();
 
-            Wait.Until(_driver => _driver.FindElement(By.ClassName("wallet-menu-total__amount")));
+            //Wait.Until(_driver => _driver.FindElement(By.ClassName("wallet-menu-total__amount")));
         }
 
     }

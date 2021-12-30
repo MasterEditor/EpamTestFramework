@@ -19,12 +19,9 @@ namespace FrameworkCore.Tests
     [TestFixture]
     public class CommonConditions
     {
-        private IWebDriver _driver;
-
         [OneTimeSetUp]
         public void Startup()
         {
-            _driver = Driver.GetDriver();
             Log.Logger = new LoggerConfiguration()
                 .WriteTo.File(Directory.GetCurrentDirectory() + Configuration.Instance["LogFile"]).CreateLogger();
         }

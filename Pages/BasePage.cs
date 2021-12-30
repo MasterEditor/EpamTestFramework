@@ -22,7 +22,7 @@ namespace FrameworkCore.Pages
         private WebDriverWait _wait;
         protected WebDriverWait Wait
         {
-            get { return _wait ?? (_wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(15))); }
+            get { return _wait ?? (_wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(30))); }
         }
 
     }

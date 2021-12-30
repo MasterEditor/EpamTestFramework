@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using FrameworkCore.Models;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,6 +11,12 @@ namespace FrameworkCore.Shared
 {
     public class Configuration
     {
+        private static Configuration _instance;
+        public static Configuration Instance
+        {
+            get { return _instance ?? (_instance = new Configuration()); }
+        }
+
         private Configuration()
         {
             Root = new ConfigurationBuilder()
@@ -18,17 +25,12 @@ namespace FrameworkCore.Shared
                 .Build();
         }
 
-        private static Configuration _instance;
-        public static Configuration Instance
-        {
-            get { return _instance ?? (_instance = new Configuration());}
-        }
-
         public readonly IConfigurationRoot Root;
 
         public string this[string name]
         {
             get { return Root[name]; }
         }
+
     }
 }
