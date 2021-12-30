@@ -24,9 +24,9 @@ namespace FrameworkCore.Pages
 
         public PersonalDataPage ChangeNickname(string nickname)
         {
+            NicknameField.Clear();
             ScrollPage();
 
-            NicknameField.Clear();
             NicknameField.SendKeys(nickname);
             ConfirmButton.Click();
             return this;
@@ -35,7 +35,6 @@ namespace FrameworkCore.Pages
         private void ScrollPage()
         {
             IJavaScriptExecutor js = (IJavaScriptExecutor)Driver;
-            js.ExecuteScript("window.scrollTo(0, document.body.scrollHeight)");
             js.ExecuteScript("window.scrollTo(0, document.body.scrollHeight)");
         }
 
