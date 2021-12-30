@@ -16,6 +16,7 @@ using FrameworkCore.Pages;
 using Serilog;
 using FrameworkCore.Services;
 using FrameworkCore.Models;
+using FrameworkCore.Utils;
 
 namespace FrameworkCore.Tests
 {
@@ -93,7 +94,7 @@ namespace FrameworkCore.Tests
         [Test, Order(5)]
         public void ChangeNicknameTest()
         {
-            var nickname = Configuration.Instance["Nickname"];
+            var nickname = StringHelper.RandomString(10);
 
             new PersonalDataPage()
                 .OpenPage()

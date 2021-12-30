@@ -13,6 +13,8 @@ using FrameworkCore.Shared;
 using System.Threading;
 using Serilog;
 using System.IO;
+using NUnit.Framework.Interfaces;
+using FrameworkCore.Utils;
 
 namespace FrameworkCore.Tests
 {
@@ -23,12 +25,27 @@ namespace FrameworkCore.Tests
         public void Startup()
         {
             Log.Logger = new LoggerConfiguration()
-                .WriteTo.File(Directory.GetCurrentDirectory() + Configuration.Instance["LogFile"]).CreateLogger();
+                .WriteTo.File(Configuration.Instance["LogFile"]).CreateLogger();
+
+            Log.Debug("Initialized");
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            var context = TestContext.CurrentContext;
+            Log.Information($"Test '{context.Test.Name}' finished: {context.Result.Outcome.ToString()} ({context.Result.Message})");
+            bool havePassed = context.Result.Outcome.Status == TestStatus.Passed;
+            if (havePassed) return;
+
+            ScreenshotHelper.TakeScreenshot();
         }
 
         [OneTimeTearDown]
         public void Close()
         {
+            Log.Debug("Close driver");
+            Log.CloseAndFlush();
             Driver.CloseDriver();
         }
     }
